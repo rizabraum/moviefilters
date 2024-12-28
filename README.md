@@ -64,4 +64,4 @@ Aplikasi ini merupakan aplikasi GUI (Graphical User Interface) berbasis Python y
 2. Interstellar (2014) | Rating: 8.6 | Genre: Fiksi Ilmiah, Petualangan
 
 ## Lisensi
-Proyek ini dibuat untuk tujuan pembelajaran dan penggunaan pribadi. Hubungi pembuat jika Anda memiliki pertanyaan lebih lanjut.
+Proyek ini dibuat untuk tujuan pembelajaran dan penggunaan pribadi.
