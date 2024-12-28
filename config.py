@@ -1,3 +1,3 @@
 # config.py
-API_KEY = 'a2d8de2a4fb058c31eaef4c572f465dd'
+API_KEY = 'api_key'
 BASE_URL = 'https://api.themoviedb.org/'
