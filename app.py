@@ -15,30 +15,41 @@ def get_movies(genre, rating_min, year_min, year_max):
         'vote_average.gte': rating_min,
         'primary_release_date.gte': f'{year_min}-01-01',
         'primary_release_date.lte': f'{year_max}-12-31',
-        'sort_by': 'popularity.desc'
+        'sort_by': 'popularity.desc',
+        'page': 1  # Start from the first page
     }
 
-    response = requests.get(url, params=params)
-    if response.status_code == 200:
-        data = response.json()
-        movies = data.get('results', [])
+    all_movies = []
+    while True:
+        response = requests.get(url, params=params)
+        if response.status_code == 200:
+            data = response.json()
+            movies = data.get('results', [])
+            all_movies.extend(movies)
 
-        if not movies:
-            messagebox.showinfo("Tidak Ada Film", "Tidak ada film yang ditemukan dengan filter yang diberikan.")
+            # Check if there is a next page
+            if data['page'] < data['total_pages']:
+                params['page'] += 1  # Move to the next page
+            else:
+                break
+        else:
+            messagebox.showerror("Error", f"API request failed with status code {response.status_code}")
             return pd.DataFrame()
 
-        movie_list = []
-        for movie in movies:
-            movie_list.append({
-                'Film': movie['title'],
-                'Genre': movie['genre_ids'],
-                'Rating': movie['vote_average'],
-                'Tahun Rilis': movie['release_date'][:4],
-            })
-        return pd.DataFrame(movie_list)
-    else:
-        messagebox.showerror("Error", f"API request failed with status code {response.status_code}")
+    if not all_movies:
+        messagebox.showinfo("Tidak Ada Film", "Tidak ada film yang ditemukan dengan filter yang diberikan.")
         return pd.DataFrame()
+
+    # Process the movie results
+    movie_list = []
+    for movie in all_movies:
+        movie_list.append({
+            'Film': movie['title'],
+            'Genre': movie['genre_ids'],
+            'Rating': movie['vote_average'],
+            'Tahun Rilis': movie['release_date'][:4],
+        })
+    return pd.DataFrame(movie_list)
 
 def get_genre_names(genre_ids):
     genre_map = {
