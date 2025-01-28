@@ -34,7 +34,7 @@ Aplikasi ini merupakan aplikasi GUI (Graphical User Interface) berbasis Python y
 1. Jalankan aplikasi dengan perintah berikut:
 
    ```bash
-   python <nama_file>.py
+   python app.py
    ```
 
 2. Antarmuka GUI akan muncul, di mana Anda dapat memilih genre, rating, dan rentang tahun rilis.
@@ -64,4 +64,4 @@ Aplikasi ini merupakan aplikasi GUI (Graphical User Interface) berbasis Python y
 2. Interstellar (2014) | Rating: 8.6 | Genre: Fiksi Ilmiah, Petualangan
 
 ## Lisensi
-Proyek ini dibuat untuk tujuan pembelajaran dan penggunaan pribadi.
+Project ini dibuat untuk tujuan pembelajaran dan penggunaan pribadi saya.
